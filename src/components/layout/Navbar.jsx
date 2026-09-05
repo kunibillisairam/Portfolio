@@ -22,39 +22,60 @@ export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("");
 
-  // Track scroll position to update active section indicator dynamically
+  // Track active section via IntersectionObserver (zero forced reflows, zero scroll jank)
   useEffect(() => {
-    const handleScroll = () => {
-      const scrollPos = window.scrollY + 160;
-      const sectionIds = ["contact", "education", "certifications", "journey", "skills", "projects", "about"];
+    const sectionIds = ["about", "projects", "skills", "journey", "certifications", "education", "contact"];
+    const labelMap = {
+      about: "About",
+      projects: "Projects",
+      skills: "Tech Stack",
+      journey: "Journey",
+      certifications: "Certifications",
+      education: "Education",
+      contact: "Contact",
+    };
 
-      for (const id of sectionIds) {
-        const el = document.getElementById(id);
-        if (el) {
-          const top = el.offsetTop;
-          if (scrollPos >= top) {
-            const labelMap = {
-              about: "About",
-              projects: "Projects",
-              skills: "Tech Stack",
-              journey: "Journey",
-              certifications: "Certifications",
-              education: "Education",
-              contact: "Contact",
-            };
-            setActiveSection(labelMap[id] || "");
-            return;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const label = labelMap[entry.target.id];
+            if (label) {
+              setActiveSection((prev) => (prev !== label ? label : prev));
+            }
           }
-        }
+        });
+      },
+      {
+        rootMargin: "-25% 0px -55% 0px",
+        threshold: 0,
       }
-      if (window.scrollY < 200) {
-        setActiveSection("");
+    );
+
+    sectionIds.forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
+
+    let ticking = false;
+    const handleTopCheck = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          if (window.scrollY < 180) {
+            setActiveSection((prev) => (prev !== "" ? "" : prev));
+          }
+          ticking = false;
+        });
+        ticking = true;
       }
     };
 
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    handleScroll();
-    return () => window.removeEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleTopCheck, { passive: true });
+
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("scroll", handleTopCheck);
+    };
   }, []);
 
   const handleNavClick = (href, label) => {

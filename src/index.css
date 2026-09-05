@@ -40,7 +40,6 @@
   --scroll-track:      rgba(255,255,255,0.12);
   --nav-bg:            rgba(8, 8, 15, 0.88);
   --hello-color:       #f97316;
-  --bg-image:          url('/hero-bg.jpg');
 }
 
 /* ── Light Mode ──────────────────────────────────────────── */
@@ -74,7 +73,6 @@
   --scroll-track:      rgba(0,0,0,0.12);
   --nav-bg:            rgba(255, 255, 255, 0.95);
   --hello-color:       #f97316;
-  --bg-image:          url('/hero-bg-light.png');
 }
 
 /* ═══════════════════════════════════════════════════════════
@@ -264,36 +262,4 @@ body {
   }
 }
 
-/* ═══════════════════════════════════════════════════════════
-   GPU ACCELERATED FLOAT KEYFRAMES
-═══════════════════════════════════════════════════════════ */
-@keyframes floatSlow {
-  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
-  50% { transform: translate3d(25px, -20px, 0) scale(1.04); }
-}
-
-@keyframes floatMedium {
-  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
-  50% { transform: translate3d(-30px, 30px, 0) scale(0.96); }
-}
-
-@keyframes floatReverse {
-  0%, 100% { transform: translate3d(0, 0, 0); }
-  50% { transform: translate3d(20px, -25px, 0); }
-}
-
-.animate-float-slow {
-  animation: floatSlow 24s ease-in-out infinite;
-  will-change: transform;
-}
-
-.animate-float-medium {
-  animation: floatMedium 28s ease-in-out infinite;
-  will-change: transform;
-}
-
-.animate-float-reverse {
-  animation: floatReverse 26s ease-in-out infinite;
-  will-change: transform;
-}
 

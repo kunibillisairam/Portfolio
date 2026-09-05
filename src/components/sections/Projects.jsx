@@ -389,6 +389,8 @@ export default function Projects() {
                     <img
                       src={featuredProject.image}
                       alt={featuredProject.title}
+                      width={1280}
+                      height={800}
                       loading="lazy"
                       decoding="async"
                       className="w-full h-full object-cover transition-transform duration-300 ease-out group-hover:scale-[1.02]"
@@ -534,6 +536,8 @@ export default function Projects() {
                         <img
                           src={project.image}
                           alt={project.title}
+                          width={1280}
+                          height={800}
                           loading="lazy"
                           decoding="async"
                           className="w-full h-full object-cover transition-transform duration-300 ease-out group-hover:scale-[1.02]"
@@ -665,6 +669,8 @@ export default function Projects() {
                       <img
                         src={project.image}
                         alt={project.title}
+                        width={1280}
+                        height={800}
                         loading="lazy"
                         decoding="async"
                         className="w-full h-full object-cover transition-transform duration-300 ease-out group-hover:scale-[1.02]"

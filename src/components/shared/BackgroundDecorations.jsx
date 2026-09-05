@@ -13,53 +13,40 @@ export default function BackgroundDecorations() {
       className="fixed inset-0 pointer-events-none z-0 overflow-hidden select-none"
       aria-hidden="true"
     >
-      {/* ── 1. Subtle Editorial Grain/Noise Texture ───────────────────────── */}
-      <svg className="absolute inset-0 w-full h-full opacity-[0.025] dark:opacity-[0.035] mix-blend-overlay">
-        <filter id="noiseFilter">
-          <feTurbulence
-            type="fractalNoise"
-            baseFrequency="0.8"
-            numOctaves="3"
-            stitchTiles="stitch"
-          />
-        </filter>
-        <rect width="100%" height="100%" filter="url(#noiseFilter)" />
-      </svg>
-
-      {/* ── 2. Soft Warm Orange & Beige Gradient Blobs ────────────────────── */}
-      {/* Top Left Warm Ambient Blob */}
+      {/* ── Soft Warm Orange & Amber Ambient Lighting (Static CSS Gradients, Zero GPU Strain) ── */}
+      {/* Top-Left Ambient Warm Glow */}
       <div
-        className="animate-float-slow absolute top-[-8%] left-[-6%] w-[550px] h-[550px] rounded-full blur-[140px]"
+        className="absolute top-[-10%] left-[-10%] w-[600px] h-[600px] rounded-full pointer-events-none"
         style={{
           background: isDark
-            ? "radial-gradient(circle, rgba(249, 115, 22, 0.08) 0%, rgba(249, 115, 22, 0) 70%)"
-            : "radial-gradient(circle, rgba(249, 115, 22, 0.07) 0%, rgba(232, 216, 200, 0.12) 60%, transparent 80%)",
+            ? "radial-gradient(circle, rgba(249, 115, 22, 0.07) 0%, transparent 70%)"
+            : "radial-gradient(circle, rgba(249, 115, 22, 0.06) 0%, rgba(232, 216, 200, 0.1) 50%, transparent 70%)",
         }}
       />
 
-      {/* Mid Right Warm Beige/Orange Ambient Blob */}
+      {/* Mid-Right Warm Accent Glow */}
       <div
-        className="animate-float-medium absolute top-[38%] right-[-8%] w-[600px] h-[600px] rounded-full blur-[150px]"
+        className="absolute top-[35%] right-[-10%] w-[650px] h-[650px] rounded-full pointer-events-none"
         style={{
           background: isDark
-            ? "radial-gradient(circle, rgba(249, 115, 22, 0.06) 0%, rgba(139, 92, 246, 0.04) 70%)"
-            : "radial-gradient(circle, rgba(234, 88, 12, 0.05) 0%, rgba(217, 180, 142, 0.1) 60%, transparent 80%)",
+            ? "radial-gradient(circle, rgba(249, 115, 22, 0.05) 0%, rgba(139, 92, 246, 0.03) 50%, transparent 70%)"
+            : "radial-gradient(circle, rgba(234, 88, 12, 0.05) 0%, rgba(217, 180, 142, 0.08) 50%, transparent 70%)",
         }}
       />
 
-      {/* Bottom Left Warm Accent Blob */}
+      {/* Bottom-Left Subtle Glow */}
       <div
-        className="animate-float-reverse absolute bottom-[-5%] left-[8%] w-[480px] h-[480px] rounded-full blur-[130px]"
+        className="absolute bottom-[-10%] left-[5%] w-[500px] h-[500px] rounded-full pointer-events-none"
         style={{
           background: isDark
-            ? "radial-gradient(circle, rgba(249, 115, 22, 0.06) 0%, transparent 70%)"
-            : "radial-gradient(circle, rgba(249, 115, 22, 0.05) 0%, rgba(230, 210, 190, 0.08) 60%, transparent 80%)",
+            ? "radial-gradient(circle, rgba(249, 115, 22, 0.05) 0%, transparent 70%)"
+            : "radial-gradient(circle, rgba(249, 115, 22, 0.04) 0%, transparent 70%)",
         }}
       />
 
-      {/* ── 3. Large Low-Opacity Organic Vector Curves ────────────────────── */}
+      {/* ── Minimal Vector Accent Curves (Static SVG, Zero Script Overhead) ── */}
       <svg
-        className="animate-float-slow absolute top-[15%] right-[5%] w-[450px] h-[450px] opacity-[0.035] dark:opacity-[0.05]"
+        className="absolute top-[15%] right-[5%] w-[420px] h-[420px] opacity-[0.035] dark:opacity-[0.045] pointer-events-none"
         viewBox="0 0 400 400"
         fill="none"
       >
@@ -77,7 +64,7 @@ export default function BackgroundDecorations() {
       </svg>
 
       <svg
-        className="animate-float-reverse absolute bottom-[25%] left-[2%] w-[500px] h-[500px] opacity-[0.03] dark:opacity-[0.045]"
+        className="absolute bottom-[25%] left-[2%] w-[450px] h-[450px] opacity-[0.03] dark:opacity-[0.04] pointer-events-none"
         viewBox="0 0 500 500"
         fill="none"
       >
@@ -88,14 +75,11 @@ export default function BackgroundDecorations() {
         />
       </svg>
 
-      {/* ── 4. Minimal Circular Elements & Ring Outlines ──────────────────── */}
-      <div className="animate-float-slow absolute top-[8%] left-[45%] w-24 h-24 rounded-full border border-[#f97316]/30 dark:border-white/20 opacity-[0.06]" />
-
-      <div className="animate-float-medium absolute bottom-[20%] right-[12%] w-36 h-36 rounded-full border border-dashed border-[#f97316]/25 dark:border-white/15 opacity-[0.05]" />
-
-      {/* Small Ambient Accent Dots */}
-      <div className="animate-float-slow absolute top-[28%] left-[15%] w-2 h-2 rounded-full bg-[#f97316] opacity-[0.12] dark:opacity-[0.15]" />
-      <div className="animate-float-reverse absolute top-[65%] right-[22%] w-2.5 h-2.5 rounded-full bg-[#f97316] opacity-[0.1] dark:opacity-[0.12]" />
+      {/* ── Subtle Geometric Rings & Accent Dots ── */}
+      <div className="absolute top-[8%] left-[45%] w-24 h-24 rounded-full border border-[#f97316]/20 dark:border-white/15 opacity-[0.06] pointer-events-none" />
+      <div className="absolute bottom-[20%] right-[12%] w-36 h-36 rounded-full border border-dashed border-[#f97316]/20 dark:border-white/10 opacity-[0.05] pointer-events-none" />
+      <div className="absolute top-[28%] left-[15%] w-2 h-2 rounded-full bg-[#f97316] opacity-[0.12] dark:opacity-[0.15] pointer-events-none" />
+      <div className="absolute top-[65%] right-[22%] w-2.5 h-2.5 rounded-full bg-[#f97316] opacity-[0.1] dark:opacity-[0.12] pointer-events-none" />
     </div>
   );
 }

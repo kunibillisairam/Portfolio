@@ -228,8 +228,11 @@ export default function Hero() {
               {/* Avatar Image Frame */}
               <div className="relative aspect-square w-full rounded-2xl overflow-hidden border border-black/10 dark:border-white/10 shadow-inner bg-slate-100 dark:bg-slate-900">
                 <img
-                  src="/student-avatar.jpg"
+                  src="/student-avatar.webp"
                   alt="Student Developer Avatar"
+                  width={400}
+                  height={400}
+                  decoding="async"
                   className="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-105"
                   loading="eager"
                 />
