@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Sun, Moon } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { useScrolled } from "../../hooks/useScrolled";
 import { useTheme } from "../../context/ThemeContext";
 
@@ -197,37 +197,10 @@ export default function Navbar() {
                 </button>
               );
             })}
-
-            {/* Subtle Theme Toggle */}
-            <button
-              onClick={toggleTheme}
-              aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
-              className="ml-2 w-9 h-9 rounded-full flex items-center justify-center transition-all duration-200 focus:outline-none hover:scale-105"
-              style={{
-                background: isDark ? "rgba(255, 255, 255, 0.06)" : "rgba(0, 0, 0, 0.05)",
-                border: `1px solid ${isDark ? "rgba(255, 255, 255, 0.12)" : "rgba(0, 0, 0, 0.1)"}`,
-                color: isDark ? "#cbd5e1" : "#475569",
-              }}
-            >
-              {isDark ? <Sun size={15} /> : <Moon size={15} />}
-            </button>
           </div>
 
-          {/* ── Mobile Action (Theme + Hamburger) ─────────────── */}
+          {/* ── Mobile Action (Hamburger) ─────────────── */}
           <div className="md:hidden flex items-center gap-2.5">
-            <button
-              onClick={toggleTheme}
-              aria-label="Toggle theme"
-              className="w-9 h-9 rounded-full flex items-center justify-center focus:outline-none active:scale-95"
-              style={{
-                background: isDark ? "rgba(255, 255, 255, 0.06)" : "rgba(0, 0, 0, 0.05)",
-                border: `1px solid ${isDark ? "rgba(255, 255, 255, 0.12)" : "rgba(0, 0, 0, 0.1)"}`,
-                color: isDark ? "#cbd5e1" : "#475569",
-              }}
-            >
-              {isDark ? <Sun size={15} /> : <Moon size={15} />}
-            </button>
-
             <button
               onClick={() => setMobileOpen((prev) => !prev)}
               className="w-9 h-9 rounded-xl flex items-center justify-center focus:outline-none transition-colors active:scale-95"

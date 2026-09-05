@@ -1,35 +1,27 @@
-import { createContext, useContext, useState, useEffect } from "react";
+import { createContext, useContext, useEffect } from "react";
 
-const ThemeContext = createContext({ theme: "dark", toggleTheme: () => {} });
+const ThemeContext = createContext({ theme: "light", isDark: false, toggleTheme: () => {} });
 
 /**
- * ThemeProvider — Manages light/dark theme.
- * Applies "dark" or "light" class to <html> element.
- * Persists preference to localStorage.
+ * ThemeProvider — Permanently locks the website to the warm editorial light theme.
+ * Removes any residual dark classes and clears localStorage.
  */
 export function ThemeProvider({ children }) {
-  const [theme, setTheme] = useState(() => {
-    try {
-      const stored = localStorage.getItem("sairam-theme");
-      if (stored === "light" || stored === "dark") return stored;
-    } catch {}
-    // Default: dark
-    return "dark";
-  });
+  const theme = "light";
+  const isDark = false;
+  const toggleTheme = () => {};
 
   useEffect(() => {
     const root = document.documentElement;
-    root.classList.remove("dark", "light");
-    root.classList.add(theme);
+    root.classList.remove("dark");
+    root.classList.add("light");
     try {
-      localStorage.setItem("sairam-theme", theme);
+      localStorage.removeItem("sairam-theme");
     } catch {}
-  }, [theme]);
-
-  const toggleTheme = () => setTheme((t) => (t === "dark" ? "light" : "dark"));
+  }, []);
 
   return (
-    <ThemeContext.Provider value={{ theme, toggleTheme }}>
+    <ThemeContext.Provider value={{ theme, isDark, toggleTheme }}>
       {children}
     </ThemeContext.Provider>
   );
